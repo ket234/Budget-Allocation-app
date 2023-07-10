@@ -1,0 +1,66 @@
+h1{
+  color:bisque;
+}
+
+h2{
+  color: #7f3d0b;
+}
+h6{
+  color: #854d23;
+}
+.minus-button{
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.currency-container{
+    height: 50px; 
+}
+
+.currency-container.custom-toggle{
+    background-color: aquamarine;
+}
+
+.table {
+    background-color: #e7dcd3;
+  }
+   .table th{
+    background-color: #e8cfbc;
+   }
+  
+  /* Example 2: Changing background color of table rows */
+  .table tr {
+    background-color: #e7dcd3;
+  }
+  
+  /* Example 3: Changing background color of table header row */
+  .table thead tr {
+    background-color: #e8cfbc;
+  }
+  
+  /* Example 4: Changing background color of specific table cell (td) */
+  .table td {
+    background-color:#e7dcd3 ;
+  } 
+
+  .top-box{
+    height: 120px !important;
+  }
+   .box-shadow{
+    box-shadow: 1px 2px #b76734a3;
+   }
+
+   .row .input-group .save-button{
+    background-color: #953d07;
+    border: 1px solid #823e0a;
+    border-radius: 5px !important;
+    color: aliceblue;
+    width: 5rem;
+    box-shadow: 1px 2px #773207;
+   }
+
+   .row .input-group .save-button:hover{
+    background-color: #b75111
+   }
