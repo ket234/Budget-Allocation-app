@@ -55,6 +55,8 @@ export const AppReducer = (state, action) => {
 
             case 'DELETE_EXPENSE':
             action.type = "DONE";
+            console.log("deleting expenses:" , action.payload);
+            console.log("current state.expenses:", state.expenses);
             state.expenses.map((currentExp)=> {
                 if (currentExp.name === action.payload) {
                     budget = state.budget + currentExp.cost
