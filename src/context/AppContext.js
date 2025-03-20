@@ -15,6 +15,7 @@ export const AppReducer = (state, action) => {
                    };
         case 'ADD_EXPENSE':
             let total_budget = 0;
+           console.log("adding Expense to:", action.payload);
             total_budget = state.expenses.reduce(
                 (previousExp, currentExp) => {
                     return previousExp + currentExp.cost
