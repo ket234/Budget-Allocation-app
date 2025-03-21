@@ -23,6 +23,8 @@ export const AppReducer = (state, action) => {
             );
             total_budget = total_budget + action.payload.cost;
             action.type = "DONE";
+            console.log("total_budget:", total_budget);
+           
             if(total_budget <= state.budget) {
                 total_budget = 0;
                 state.expenses.map((currentExp)=> {
@@ -54,23 +56,36 @@ export const AppReducer = (state, action) => {
                     expenses: [...red_expenses],
                 };
 
+            // case 'DELETE_EXPENSE':
+            // action.type = "DONE";
+            // console.log("Deleting expense:", action.payload);
+
+            // state.expenses.map((currentExp)=> {
+            //     if (currentExp.name === action.payload) {
+            //         budget = state.budget + currentExp.cost
+            //         currentExp.cost =  0;
+            //     }
+            //     return currentExp
+            // })
+            // action.type = "DONE";
+            // return {
+            //     ...state,
+            //     budget
+            // };
             case 'DELETE_EXPENSE':
-            action.type = "DONE";
-            console.log("deleting expenses:" , action.payload);
-            console.log("current state.expenses:", state.expenses);
-            state.expenses.map((currentExp)=> {
-                if (currentExp.name === action.payload) {
-                    budget = state.budget + currentExp.cost
-                    currentExp.cost =  0;
-                }
-                return currentExp
-            })
-            action.type = "DONE";
-            return {
-                ...state,
-                budget
-            };
-       
+                console.log("deleting expenses:", action.payload);
+            
+                const updatedExpenses = state.expenses.map(exp =>
+                    exp.name === action.payload ? { ...exp, cost: 0 } : exp
+                );
+            
+                console.log("updated expenses:", updatedExpenses);
+            
+                return {
+                    ...state,
+                    expenses: updatedExpenses, // ✅ State updates correctly
+                };
+            
         case 'CHG_Currency':
             action.type = "DONE";
             state.currency = action.payload;
