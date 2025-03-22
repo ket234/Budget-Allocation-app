@@ -44,10 +44,10 @@ export const AppReducer = (state, action) => {
         //     }
         case 'ADD_EXPENSE':
             console.log("Adding expense to:", action.payload);
-            let total_budget = state.expenses.reduce(
-                (previousExp, currentExp)   => {
-                    return previousExp + currentExp.cost;
-                },0 ) + action.payload.cost;
+         let total_budget = state.expenses.reduce(
+                (previousExp, currentExp)   =>  previousExp + currentExp.cost,
+                0 
+            ) + action.payload.cost;
             console.log("total budget after adding:", total_budget);
             if(total_budget <= state.budget) {
                 const updatedExpenses = state.expenses.map((currentExp)=> 
