@@ -45,13 +45,13 @@ export const AppReducer = (state, action) => {
         case 'ADD_EXPENSE':
             console.log("Adding expense to:", action.payload);
             let total_budget = state.expenses.reduce(
-                (previousExp, currentExp)   => {
-                    return previousExp + currentExp.cost;
-                },0 ) + action.payload.cost;
+                (previousExp, currentExp)   =>  previousExp + currentExp.cost,
+                0 
+            ) + action.payload.cost;
             console.log("total budget after adding:", total_budget);
             if(total_budget <= state.budget) {
                 const updatedExpenses = state.expenses.map((currentExp)=> 
-                currentExp.name === action.payload.name ? {...currentExp ,cost: currentExp.cost + action.payload.cost}
+                currentExp.name === action.payload.name ? {...currentExp , cost: currentExp.cost + action.payload.cost}
                 : currentExp
             );
                 return {
@@ -106,11 +106,19 @@ export const AppReducer = (state, action) => {
                 );
             
                 console.log("updated expenses:", updatedExpenses);
-            
+                const totalExpensesAfterDeletion = updatedExpenses.reduce((total, item) => total + item.cost, 0);
+                const newRemaining = state.budget - totalExpensesAfterDeletion;
+                console.log("Budget before:", state.budget);
+                console.log("Total expenses before deletion:", state.expenses.reduce((total, item) => total + item.cost, 0));
+                console.log("Total expenses after deletion:", totalExpensesAfterDeletion);
+                console.log("Updated expenses:", updatedExpenses);
+                console.log("Remaining after deletion:", newRemaining);
                 return {
                     ...state,
                     expenses: updatedExpenses, // ✅ State updates correctly
+                    remaining: newRemaining
                 };
+
             
         case 'CHG_Currency':
             action.type = "DONE";
@@ -126,7 +134,7 @@ export const AppReducer = (state, action) => {
 };
 
 // 1. Sets the initial state when the app loads
-const initialState = {
+export const initialState = {
     budget:2000,
     expenses: [
       
