@@ -44,7 +44,11 @@ export const AppReducer = (state, action) => {
         //     }
         case 'ADD_EXPENSE':
             console.log("Adding expense to:", action.payload);
+<<<<<<< HEAD
             let total_budget = state.expenses.reduce(
+=======
+         let total_budget = state.expenses.reduce(
+>>>>>>> 3036a64eb8d2512d7517bbb0111a4990ea9c5c0e
                 (previousExp, currentExp)   =>  previousExp + currentExp.cost,
                 0 
             ) + action.payload.cost;
@@ -104,7 +108,7 @@ export const AppReducer = (state, action) => {
                 const updatedExpenses = state.expenses.map(exp =>
                     exp.name === action.payload ? { ...exp, cost: 0 } : exp
                 );
-            
+               
                 console.log("updated expenses:", updatedExpenses);
                 const totalExpensesAfterDeletion = updatedExpenses.reduce((total, item) => total + item.cost, 0);
                 const newRemaining = state.budget - totalExpensesAfterDeletion;
@@ -113,6 +117,10 @@ export const AppReducer = (state, action) => {
                 console.log("Total expenses after deletion:", totalExpensesAfterDeletion);
                 console.log("Updated expenses:", updatedExpenses);
                 console.log("Remaining after deletion:", newRemaining);
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 3036a64eb8d2512d7517bbb0111a4990ea9c5c0e
                 return {
                     ...state,
                     expenses: updatedExpenses, // ✅ State updates correctly
