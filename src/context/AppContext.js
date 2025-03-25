@@ -104,12 +104,20 @@ export const AppReducer = (state, action) => {
                 const updatedExpenses = state.expenses.map(exp =>
                     exp.name === action.payload ? { ...exp, cost: 0 } : exp
                 );
-            
+               
                 console.log("updated expenses:", updatedExpenses);
+                const totalExpensesAfterDeletion = updatedExpenses.reduce((total, item) => total + item.cost, 0);
+                const newRemaining = state.budget - totalExpensesAfterDeletion;
+                console.log("Budget before:", state.budget);
+                console.log("Total expenses before deletion:", state.expenses.reduce((total, item) => total + item.cost, 0));
+                console.log("Total expenses after deletion:", totalExpensesAfterDeletion);
+                console.log("Updated expenses:", updatedExpenses);
+                console.log("Remaining after deletion:", newRemaining);
             
                 return {
                     ...state,
                     expenses: updatedExpenses, // ✅ State updates correctly
+                    remaining: newRemaining
                 };
             
         case 'CHG_Currency':
